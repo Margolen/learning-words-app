@@ -1,0 +1,19 @@
+.flash-card {
+    display: inline-grid;
+    width: 20%;
+    margin:4px;
+    gap: 1px;
+    border: 4mm ridge rgba(211, 220, 50, .6);
+}
+
+.card-english {
+    font-style: bold;
+}
+
+.card-transcription {
+    font-style:italic;
+}
+
+.card-russian {
+    font-style: bold;
+}
