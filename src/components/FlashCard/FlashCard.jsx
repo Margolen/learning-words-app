@@ -7,7 +7,7 @@ function FlashCard(props) {
           <div styleName="card-english">{props.english}</div>
           <div styleName="card-transcription">{props.transcription}</div>
           <div styleName="card-russian">{props.russian}</div>
-                </div>
+      </div>
     )
   }
   
