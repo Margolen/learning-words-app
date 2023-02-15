@@ -3,11 +3,26 @@ import styles from "./style.module.scss";
 
 function WordList(props) {
   return (
-    <div styleName="table">
-      <div styleName="english">{props.english}</div>
-      <div styleName="transcription">{props.transcription}</div>
-      <div styleName="russian">{props.russian}</div>
-    </div>
+    <table styleName="table">
+      <th>English Word</th>
+      <th>Transcrption</th>
+      <th>Russian Word</th>
+      <th></th>
+      {props.words.map(word => {
+      return <tr>
+        <td>{word.english}</td>
+        <td>{word.transcription}</td>
+        <td>{word.russian}</td>
+        <td>
+          <img src="./img/add.png" alt="" />
+          <img src="./img/edit.png" alt="" />
+          <img src="./img/delete.png" alt="" />
+        </td>
+        </tr>;})
+      }
+      
+     </table> 
+      
   );
 }
 

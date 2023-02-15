@@ -1,6 +1,14 @@
 .table {
-    display: grid;
+    border-spacing : 10px;
+    border-color : blue;
+    border-style: solid;
+    border-collapse: collapse;
+    
+    th, td {
+        border: 1px solid grey;
+     }
 }
+
 .english, .russian {
     font-style: bold;
 }
