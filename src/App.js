@@ -1,8 +1,8 @@
-import "./App.css";
-import words from "./words.json";
-import FlashCard from "./components/FlashCard/FlashCard";
+import './App.css';
+import words from './words.json';
+import FlashCard from './components/FlashCard/FlashCard';
 
-export default function App() {
+export default function App () {
   console.log(words);
 
   return (
