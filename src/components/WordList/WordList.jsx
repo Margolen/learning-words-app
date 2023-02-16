@@ -1,5 +1,5 @@
-import CSSModules from "react-css-modules";
-import styles from "./style.module.scss";
+import CSSModules from 'react-css-modules';
+import styles from './style.module.scss';
 
 function WordList(props) {
   return (
@@ -9,20 +9,20 @@ function WordList(props) {
       <th>Russian Word</th>
       <th></th>
       {props.words.map(word => {
-      return <tr>
-        <td>{word.english}</td>
-        <td>{word.transcription}</td>
-        <td>{word.russian}</td>
-        <td>
-          <img src="./img/add.png" alt="" />
-          <img src="./img/edit.png" alt="" />
-          <img src="./img/delete.png" alt="" />
-        </td>
-        </tr>;})
-      }
-      
-     </table> 
-      
+        return (
+          <tr>
+            <td>{word.english}</td>
+            <td>{word.transcription}</td>
+            <td>{word.russian}</td>
+            <td>
+              <img src="./img/add.png" alt="" />
+              <img src="./img/edit.png" alt="" />
+              <img src="./img/delete.png" alt="" />
+            </td>
+          </tr>
+        );
+      })}
+    </table>
   );
 }
 
