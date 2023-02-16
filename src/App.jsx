@@ -6,15 +6,20 @@ import FlashCard from './components/FlashCard/FlashCard';
 import WordList from './components/WordList/WordList';
 
 export default function App() {
-  console.log(words);
-
   return (
     <div className="App">
       <Header />
       <Home />
       <WordList words={words} />
       {words.map(word => {
-        return <FlashCard {...word} key={word.id} />;
+        return (
+          <FlashCard
+            english={word.english}
+            transcription={word.transcription}
+            russian={word.russian}
+            key={word.id}
+          />
+        );
       })}
     </div>
   );
