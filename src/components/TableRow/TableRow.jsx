@@ -9,9 +9,9 @@ function TableRow(props) {
       <td>{transcription}</td>
       <td>{russian}</td>
       <td>
-        <img src="./img/add.png" alt="" />
-        <img src="./img/edit.png" alt="" />
-        <img src="./img/delete.png" alt="" />
+        <img styleName="img-row" src="./img/close.png" alt="" />
+        <img styleName="img-row" src="./img/edit.png" alt="" />
+        <img styleName="img-row" src="./img/delete.png" alt="" />
       </td>
     </tr>
   );

@@ -1,5 +1,6 @@
 import CSSModules from 'react-css-modules';
 import TableRow from '../TableRow/TableRow';
+import AddWord from '../AddWord/AddWord';
 import styles from './style.module.scss';
 
 function WordList(props) {
@@ -10,6 +11,7 @@ function WordList(props) {
       <th>Transcrption</th>
       <th>Russian Word</th>
       <th></th>
+      <AddWord />
       {words.map(word => {
         return <TableRow word={word} key={word.id} />;
       })}
