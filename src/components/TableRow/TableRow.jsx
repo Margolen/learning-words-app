@@ -8,27 +8,48 @@ function TableRow(props) {
 
   return (
     <tr>
-      <td>{english}</td>
-      <td>{transcription}</td>
-      <td>{russian}</td>
+      {edited ? (
+        <>
+          <td>
+            <input defaultValue={english}></input>
+          </td>
+          <td>
+            <input defaultValue={transcription}></input>
+          </td>
+          <td>
+            <input defaultValue={russian}></input>
+          </td>
+        </>
+      ) : (
+        <>
+          <td>{english}</td>
+          <td>{transcription}</td>
+          <td>{russian}</td>
+        </>
+      )}
+
       <td>
-        {edited && (
-          <img
-            onClick={() => setEdited(false)}
-            styleName="img-row"
-            src="./img/cancel.png"
-            alt=""
-          />
+        {edited ? (
+          <>
+            <img
+              onClick={() => setEdited(false)}
+              styleName="img-row"
+              src="./img/cancel.png"
+              alt=""
+            />
+            <img styleName="img-row" src="./img/save.png" alt="" />
+          </>
+        ) : (
+          <>
+            <img
+              onClick={() => setEdited(true)}
+              styleName="img-row"
+              src="./img/edit.png"
+              alt=""
+            />
+            <img styleName="img-row" src="./img/delete.png" alt="" />
+          </>
         )}
-        {!edited && (
-          <img
-            onClick={() => setEdited(true)}
-            styleName="img-row"
-            src="./img/edit.png"
-            alt=""
-          />
-        )}
-        <img styleName="img-row" src="./img/delete.png" alt="" />
       </td>
     </tr>
   );
