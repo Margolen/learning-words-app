@@ -4,11 +4,11 @@ import styles from './style.module.scss';
 
 function TableRow(props) {
   const { english, transcription, russian } = props.word;
-  const [edited, setEdited] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <tr>
-      {edited ? (
+      {editMode ? (
         <>
           <td>
             <input defaultValue={english}></input>
@@ -29,10 +29,10 @@ function TableRow(props) {
       )}
 
       <td>
-        {edited ? (
+        {editMode ? (
           <>
             <img
-              onClick={() => setEdited(false)}
+              onClick={() => setEditMode(false)}
               styleName="img-row"
               src="./img/cancel.png"
               alt=""
@@ -42,7 +42,7 @@ function TableRow(props) {
         ) : (
           <>
             <img
-              onClick={() => setEdited(true)}
+              onClick={() => setEditMode(true)}
               styleName="img-row"
               src="./img/edit.png"
               alt=""
