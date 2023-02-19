@@ -8,9 +8,9 @@ import WordList from './components/WordList/WordList';
 export default function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header />
       <Home />
-      <WordList words={words} />
+      <WordList words={words} /> */}
       {words.map(word => {
         return (
           <FlashCard

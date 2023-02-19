@@ -1,16 +1,55 @@
 .flash-card {
-    display: inline-grid;
-    width: 20%;
-    margin:4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 12rem;
+    height: 15rem;
+    margin: 4px;
     gap: 1px;
-    border: 4mm ridge rgba(211, 220, 50, .6);
+    border: 1px solid rgb(171, 170, 170);
+    border-radius: 1rem;
+    background-color: rgb(244, 243, 243);
+
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .action {
+        display: flex;
+    }
 }
 
-.card-english, .card-russian {
+.field {
+    display: flex;
+}
+
+.english, .russian {
     font-style: bold;
+    text-transform: capitalize;
 }
 
-.card-transcription {
-    font-style:italic;
+.english {
+    font-size: 1.5rem;
+}
+
+.russian {
+    color:rgb(39, 171, 100);
+    font-size: 1.2rem;
+}
+
+.transcription {
+    font-style: italic;
+    color: rgb(171, 170, 170);
+}
+
+.flip-button {
+    background-color: rgb(39, 171, 100);
+    color: white;
+    border-radius: 10px;
+    border-width: 0px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
 }
 
