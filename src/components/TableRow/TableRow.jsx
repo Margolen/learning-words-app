@@ -12,22 +12,22 @@ function TableRow(props) {
       <td>{transcription}</td>
       <td>{russian}</td>
       <td>
-        {edited ? (
+        {edited && (
           <img
             onClick={() => setEdited(false)}
             styleName="img-row"
             src="./img/cancel.png"
             alt=""
           />
-        ) : (
-          <></>
         )}
-        <img
-          onClick={() => setEdited(true)}
-          styleName="img-row"
-          src="./img/edit.png"
-          alt=""
-        />
+        {!edited && (
+          <img
+            onClick={() => setEdited(true)}
+            styleName="img-row"
+            src="./img/edit.png"
+            alt=""
+          />
+        )}
         <img styleName="img-row" src="./img/delete.png" alt="" />
       </td>
     </tr>
