@@ -9,18 +9,20 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      <Home />
-      <WordList words={words} />
-      {words.map(word => {
-        return (
-          <FlashCard
-            english={word.english}
-            transcription={word.transcription}
-            russian={word.russian}
-            key={word.id}
-          />
-        );
-      })}
+      <div className="content">
+        {/* <Home /> */}
+        <WordList words={words} />
+        {words.map(word => {
+          return (
+            <FlashCard
+              english={word.english}
+              transcription={word.transcription}
+              russian={word.russian}
+              key={word.id}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
