@@ -4,15 +4,17 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import FlashCard from './components/FlashCard/FlashCard';
 import WordList from './components/WordList/WordList';
+import FlashCardDeck from './components/FlashCardDeck/FlashCardDeck';
 
 export default function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="content">
         {/* <Home /> */}
-        <WordList words={words} />
-        {words.map(word => {
+        {/* <WordList words={words} /> */}
+        <FlashCardDeck words={words} />
+        {/* {words.map(word => {
           return (
             <FlashCard
               english={word.english}
@@ -21,7 +23,7 @@ export default function App() {
               key={word.id}
             />
           );
-        })}
+        })} */}
       </div>
     </div>
   );
