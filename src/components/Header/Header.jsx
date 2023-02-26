@@ -3,28 +3,26 @@ import styles from './style.module.scss';
 
 function Header() {
   return (
-    <nav styleName="header">
-      <ul>
-        <li>
+    <header styleName="header">
+      <nav>
+      
+       
           <a href="#">Logo</a>
-        </li>
-        <li>
+        
+       
           <a href="#">Home</a>
-        </li>
-        <li>
+        
+        
           <a href="#">Word Training</a>
-        </li>
-        <li>
+        
+        
           <a href="#">Word List</a>
-        </li>
-        <li>
+        
           <a href="#">Contact</a>
-        </li>
-        <li>
+        
           <a href="#">Switch Theme</a>
-        </li>
-      </ul>
-    </nav>
+        <</nav>>
+    </header>
   );
 }
 
