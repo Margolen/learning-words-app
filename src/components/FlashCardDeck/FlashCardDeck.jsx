@@ -21,7 +21,7 @@ function FlashCardDesk(props) {
   return (
     <div styleName="desk">
       <button onClick={handlePrev}>prev</button>
-      <FlashCard word={props.words[count]} />
+      <FlashCard word={props.words[count]} key={count} />
       <button onClick={handleNext}>next</button>
     </div>
   );

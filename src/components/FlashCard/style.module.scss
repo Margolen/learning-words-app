@@ -10,6 +10,8 @@
     border: 1px solid rgb(171, 170, 170);
     border-radius: 1rem;
     background-color: rgb(244, 243, 243);
+    animation-name: slider;
+    animation-duration: 3s;
 
     .main {
         display: flex;
@@ -51,5 +53,17 @@
     border-width: 0px;
     padding: 0.5rem;
     font-size: 1.2rem;
+}
+
+@keyframes slider {
+    0% {
+        transform: scale(1.2);
+    }
+    50%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1.0);
+    }
 }
 
