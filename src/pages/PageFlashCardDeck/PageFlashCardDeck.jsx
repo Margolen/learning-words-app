@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CSSModules from 'react-css-modules';
-import FlashCard from '../FlashCard/FlashCard';
 import styles from './style.module.scss';
+import FlashCard from '../../components/FlashCard/FlashCard';
 
 function FlashCardDesk(props) {
   const [count, setCount] = useState(0);

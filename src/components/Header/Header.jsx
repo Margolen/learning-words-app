@@ -1,16 +1,16 @@
 import CSSModules from 'react-css-modules';
+import { NavLink } from 'react-router-dom';
 import styles from './style.module.scss';
 
 function Header() {
   return (
     <header styleName="header">
       <nav>
-        <a href="#">Logo</a>
-        <a href="#">Home</a>
-        <a href="#">Word Training</a>
-        <a href="#">Word List</a>
-        <a href="#">Contact</a>
-        <a href="#">Switch Theme</a>
+        <NavLink to="/">Logo</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/wordtraining">Word Training</NavLink>
+        <NavLink to="/wordlist">Word List</NavLink>
+        <NavLink to="/">Switch Theme</NavLink>
       </nav>
     </header>
   );

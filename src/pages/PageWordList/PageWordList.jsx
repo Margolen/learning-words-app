@@ -1,6 +1,6 @@
 import CSSModules from 'react-css-modules';
-import TableRow from '../TableRow/TableRow';
-import AddWord from '../AddWord/AddWord';
+import TableRow from '../../components/TableRow/TableRow';
+import AddWord from '../../components/AddWord/AddWord';
 import styles from './style.module.scss';
 
 function WordList(props) {
