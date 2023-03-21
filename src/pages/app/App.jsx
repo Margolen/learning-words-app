@@ -23,14 +23,20 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/" element={<PageHome />}></Route>
-            <Route path="/wordtraining" element={<PageFlashCardDeck />}></Route>
-            <Route path="/wordlist" element={<PageWordList />}></Route>
+            <Route
+              path="/wordtraining"
+              element={<PageFlashCardDeck words={words} />}
+            ></Route>
+            <Route
+              path="/wordlist"
+              element={<PageWordList words={words} />}
+            ></Route>
             <Route path="*" element={<PageError />}></Route>
           </Routes>
           <div className="content">
             <Home />
             {/* <WordList words={words} /> */}
-            <PageFlashCardDeck words={words} />
+            {/* <PageFlashCardDeck words={words} /> */}
             {/* {words.map(word => {
           return (
             <FlashCard
