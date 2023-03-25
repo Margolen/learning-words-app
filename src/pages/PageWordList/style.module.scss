@@ -1,7 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
 .table {
     width: 60%;
     border-spacing : 10px;
-    border-color : blue;
+    border-color : rgb(32, 32, 34);
     border-style: solid;
     border-collapse: collapse;
     

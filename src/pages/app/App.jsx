@@ -1,6 +1,5 @@
 import words from '../../words.json';
-import { PageHome, PageWordList, PageError } from '../index';
-import './App.css';
+import { PageHome, PageFlashCardDeck, PageWordList, PageError } from '../index';
 import Header from '../../components/Header/Header';
 import Home from '../PageHome/PageHome';
 import WordList from '../PageWordList/PageWordList';
@@ -10,8 +9,8 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import PageFlashCardDeck from '../PageFlashCardDeck/PageFlashCardDeck';
-import FlashCard from '../../components/FlashCard/FlashCard';
+
+import styles from './style.module.scss';
 
 export default function App() {
   return (
@@ -20,9 +19,9 @@ export default function App() {
         <header>
           <Header />
         </header>
-        <main>
+        <main className="main">
           <Routes>
-            <Route path="/" element={<PageHome />}></Route>
+            <Route path="/" element={<PageHome words={words} />}></Route>
             <Route
               path="/wordtraining"
               element={<PageFlashCardDeck words={words} />}
@@ -33,21 +32,6 @@ export default function App() {
             ></Route>
             <Route path="*" element={<PageError />}></Route>
           </Routes>
-          <div className="content">
-            <Home />
-            {/* <WordList words={words} /> */}
-            {/* <PageFlashCardDeck words={words} /> */}
-            {/* {words.map(word => {
-          return (
-            <FlashCard
-              english={word.english}
-              transcription={word.transcription}
-              russian={word.russian}
-              key={word.id}
-            />
-          );
-        })} */}
-          </div>
         </main>
       </div>
     </Router>
