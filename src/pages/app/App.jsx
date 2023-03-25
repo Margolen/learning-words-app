@@ -23,7 +23,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<PageHome words={words} />}></Route>
             <Route
-              path="/wordtraining"
+              path="/game"
               element={<PageFlashCardDeck words={words} />}
             ></Route>
             <Route

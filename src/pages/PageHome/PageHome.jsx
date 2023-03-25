@@ -7,7 +7,7 @@ function Home() {
   return (
     <div styleName="home">
       <img src="img/flag.png" alt="flag of the UK" />
-      <button onClick={() => navigate('wordtraining')}>Get started</button>
+      <button onClick={() => navigate('game')}>Get started</button>
     </div>
   );
 }

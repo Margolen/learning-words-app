@@ -13,7 +13,7 @@ function Header() {
           <img src="img/logo.png" alt="" />
         </NavLink>
 
-        <NavLink to="/wordtraining">Word Training</NavLink>
+        <NavLink to="/game">Word Training</NavLink>
         <NavLink to="/wordlist">Word List</NavLink>
         <NavLink to="/">Switch Theme</NavLink>
       </nav>
