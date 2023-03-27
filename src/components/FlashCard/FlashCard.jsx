@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './style.module.scss';
 
 function FlashCard(props) {
   const word = props.word;
   const [flipped, setFlipped] = useState(false);
+
+  const flipButtonRef = useRef();
+  useEffect(() => flipButtonRef.current.focus(), []);
 
   function flip() {
     setFlipped(true);
@@ -21,7 +24,7 @@ function FlashCard(props) {
         {flipped ? (
           <div styleName="russian">{word.russian}</div>
         ) : (
-          <button styleName="flip-button" onClick={flip}>
+          <button styleName="flip-button" onClick={flip} ref={flipButtonRef}>
             Проверить
           </button>
         )}
