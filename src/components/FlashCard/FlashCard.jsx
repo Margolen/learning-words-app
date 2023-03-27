@@ -8,6 +8,7 @@ function FlashCard(props) {
 
   function flip() {
     setFlipped(true);
+    props.onFlip();
   }
 
   return (

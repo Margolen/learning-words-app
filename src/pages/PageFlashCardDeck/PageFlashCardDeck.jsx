@@ -5,6 +5,7 @@ import FlashCard from '../../components/FlashCard/FlashCard';
 
 function FlashCardDesk(props) {
   const [count, setCount] = useState(0);
+  const [flipCount, setFlipCount] = useState(0);
 
   function handlePrev() {
     if (count !== 0) {
@@ -18,11 +19,16 @@ function FlashCardDesk(props) {
     }
   }
 
+  function handleFlip() {
+    setFlipCount(flipCount + 1);
+  }
+
   return (
     <div styleName="desk">
       <button onClick={handlePrev}>prev</button>
-      <FlashCard word={props.words[count]} key={count} />
+      <FlashCard onFlip={handleFlip} word={props.words[count]} key={count} />
       <button onClick={handleNext}>next</button>
+      <div>Выучено слов: {flipCount}</div>
     </div>
   );
 }
