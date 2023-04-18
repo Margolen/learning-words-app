@@ -21,32 +21,58 @@ function TableRow(props) {
     transcription.trim() !== ''
   );
 
-  function handleInputChangeEnglish(event) {
+  const handleInputChangeEnglish = event => {
     setInputValueEnglish(event.target.value);
     if (event.target.value.trim() === '') {
       setIsCorrectEnglish(false);
     } else {
       setIsCorrectEnglish(true);
     }
-  }
+  };
 
-  function handleInputChangeRussian(event) {
+  const handleInputChangeRussian = event => {
     setInputValueRussian(event.target.value);
     if (event.target.value.trim() === '') {
       setIsCorrectRussian(false);
     } else {
       setIsCorrectRussian(true);
     }
-  }
+  };
 
-  function handleInputChangeTranscription(event) {
+  const handleInputChangeTranscription = event => {
     setInputValueTranscription(event.target.value);
     if (event.target.value.trim() === '') {
       setIsCorrectTranscription(false);
     } else {
       setIsCorrectTranscription(true);
     }
-  }
+  };
+
+  const isFieldValid = field => {
+    const pattern = /\d+/g; // регулярное выражение для поиска цифр в строке
+    const hasDigits = pattern.test(field); // проверяем наличие цифр в строке
+    return !hasDigits;
+  };
+
+  const handleSave = () => {
+    if (isFieldValid(inputValueEnglish)) {
+      console.log('English field is correct');
+    } else {
+      alert('Invalid English value');
+    }
+
+    if (isFieldValid(inputValueRussian)) {
+      console.log('Russian field is correct');
+    } else {
+      alert('Invalid Russian value');
+    }
+
+    if (isFieldValid(inputValueTranscription)) {
+      console.log('Transcription field is correct');
+    } else {
+      alert('Invalid transcription value');
+    }
+  };
 
   return (
     <tr>
@@ -99,6 +125,7 @@ function TableRow(props) {
               }
               src="./img/save.png"
               alt=""
+              onClick={handleSave}
             />
           </>
         ) : (
