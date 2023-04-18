@@ -6,18 +6,72 @@ function TableRow(props) {
   const { english, transcription, russian } = props.word;
   const [editMode, setEditMode] = useState(false);
 
+  const [inputValueEnglish, setInputValueEnglish] = useState(english);
+  const [inputValueRussian, setInputValueRussian] = useState(russian);
+  const [inputValueTranscription, setInputValueTranscription] =
+    useState(transcription);
+
+  const [isCorrectEnglish, setIsCorrectEnglish] = useState(
+    english.trim() !== ''
+  );
+  const [isCorrectRussian, setIsCorrectRussian] = useState(
+    russian.trim() !== ''
+  );
+  const [isCorrectTranscription, setIsCorrectTranscription] = useState(
+    transcription.trim() !== ''
+  );
+
+  function handleInputChangeEnglish(event) {
+    setInputValueEnglish(event.target.value);
+    if (event.target.value.trim() === '') {
+      setIsCorrectEnglish(false);
+    } else {
+      setIsCorrectEnglish(true);
+    }
+  }
+
+  function handleInputChangeRussian(event) {
+    setInputValueRussian(event.target.value);
+    if (event.target.value.trim() === '') {
+      setIsCorrectRussian(false);
+    } else {
+      setIsCorrectRussian(true);
+    }
+  }
+
+  function handleInputChangeTranscription(event) {
+    setInputValueTranscription(event.target.value);
+    if (event.target.value.trim() === '') {
+      setIsCorrectTranscription(false);
+    } else {
+      setIsCorrectTranscription(true);
+    }
+  }
+
   return (
     <tr>
       {editMode ? (
         <>
           <td>
-            <input defaultValue={english}></input>
+            <input
+              defaultValue={inputValueEnglish}
+              onChange={handleInputChangeEnglish}
+              styleName={!isCorrectEnglish && 'incorrect'}
+            ></input>
           </td>
           <td>
-            <input defaultValue={transcription}></input>
+            <input
+              defaultValue={inputValueTranscription}
+              onChange={handleInputChangeTranscription}
+              styleName={!isCorrectTranscription && 'incorrect'}
+            ></input>
           </td>
           <td>
-            <input defaultValue={russian}></input>
+            <input
+              defaultValue={inputValueRussian}
+              onChange={handleInputChangeRussian}
+              styleName={!isCorrectRussian && 'incorrect'}
+            ></input>
           </td>
         </>
       ) : (
@@ -37,7 +91,15 @@ function TableRow(props) {
               src="./img/cancel.png"
               alt=""
             />
-            <img styleName="img-row" src="./img/save.png" alt="" />
+            <img
+              styleName={
+                isCorrectEnglish && isCorrectRussian && isCorrectTranscription
+                  ? 'img-row'
+                  : 'img-row disabled'
+              }
+              src="./img/save.png"
+              alt=""
+            />
           </>
         ) : (
           <>
@@ -55,4 +117,6 @@ function TableRow(props) {
   );
 }
 
-export default CSSModules(TableRow, styles);
+export default CSSModules(TableRow, styles, {
+  allowMultiple: true,
+});
