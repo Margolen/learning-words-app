@@ -59,19 +59,24 @@ function TableRow(props) {
       console.log('English field is correct');
     } else {
       alert('Invalid English value');
+      return;
     }
 
     if (isFieldValid(inputValueRussian)) {
       console.log('Russian field is correct');
     } else {
       alert('Invalid Russian value');
+      return;
     }
 
     if (isFieldValid(inputValueTranscription)) {
       console.log('Transcription field is correct');
     } else {
       alert('Invalid transcription value');
+      return;
     }
+
+    setEditMode(false);
   };
 
   return (
@@ -80,21 +85,21 @@ function TableRow(props) {
         <>
           <td>
             <input
-              defaultValue={inputValueEnglish}
+              value={inputValueEnglish}
               onChange={handleInputChangeEnglish}
               styleName={!isCorrectEnglish && 'incorrect'}
             ></input>
           </td>
           <td>
             <input
-              defaultValue={inputValueTranscription}
+              value={inputValueTranscription}
               onChange={handleInputChangeTranscription}
               styleName={!isCorrectTranscription && 'incorrect'}
             ></input>
           </td>
           <td>
             <input
-              defaultValue={inputValueRussian}
+              value={inputValueRussian}
               onChange={handleInputChangeRussian}
               styleName={!isCorrectRussian && 'incorrect'}
             ></input>
@@ -102,9 +107,9 @@ function TableRow(props) {
         </>
       ) : (
         <>
-          <td>{english}</td>
-          <td>{transcription}</td>
-          <td>{russian}</td>
+          <td>{inputValueEnglish}</td>
+          <td>{inputValueTranscription}</td>
+          <td>{inputValueRussian}</td>
         </>
       )}
 
