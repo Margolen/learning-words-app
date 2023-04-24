@@ -1,3 +1,5 @@
+@import '../../style/index.scss';
+
 .flash-card {
     display: flex;
     align-items: center;
@@ -47,12 +49,8 @@
 }
 
 .flip-button {
+    @extend .default-button;
     background-color: rgb(39, 171, 100);
-    color: white;
-    border-radius: 10px;
-    border-width: 0px;
-    padding: 0.5rem;
-    font-size: 1.2rem;
 }
 
 @keyframes slider {

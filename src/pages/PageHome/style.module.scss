@@ -1,3 +1,5 @@
+@import '../../style/index.scss';
+
 .home {
     display: flex;
     flex-direction: column;
@@ -11,7 +13,8 @@
     }
 
     button {
-        
+        @extend .default-button;
+        background-color: rgb(63, 63, 204);
     }
 
     button:hover {

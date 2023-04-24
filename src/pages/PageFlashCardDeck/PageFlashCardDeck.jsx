@@ -24,12 +24,18 @@ function FlashCardDesk(props) {
   }
 
   return (
-    <div styleName="desk">
-      <button onClick={handlePrev}>prev</button>
-      <FlashCard onFlip={handleFlip} word={props.words[count]} key={count} />
-      <button onClick={handleNext}>next</button>
-      <div>Выучено слов: {flipCount}</div>
-    </div>
+    <>
+      <div styleName="desk">
+        <button styleName="switch" onClick={handlePrev}>
+          prev
+        </button>
+        <FlashCard onFlip={handleFlip} word={props.words[count]} key={count} />
+        <button styleName="switch" onClick={handleNext}>
+          next
+        </button>
+      </div>
+      <div styleName="counter">Выучено слов: {flipCount}</div>
+    </>
   );
 }
 
