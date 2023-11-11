@@ -15,7 +15,7 @@ function FlashCard(props) {
   }
 
   return (
-    <Card className="text-center" style={{ width: '18rem', height: '10rem' }}>
+    <Card className="text-center" style={{ height: '10rem' }}>
       <Card.Body>
         <Card.Title as="h1">{word.english}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
@@ -25,7 +25,7 @@ function FlashCard(props) {
           {flipped ? (
             <Card.Text as="h3">{word.russian}</Card.Text>
           ) : (
-            <Button variant="primary" onClick={flip} ref={flipButtonRef}>
+            <Button variant="success" onClick={flip} ref={flipButtonRef}>
               Проверить
             </Button>
           )}
