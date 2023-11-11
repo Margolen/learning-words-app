@@ -15,19 +15,21 @@ function FlashCard(props) {
   }
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="text-center" style={{ width: '18rem', height: '10rem' }}>
       <Card.Body>
-        <Card.Header as="h5">{word.english}</Card.Header>
-
-        <div>
+        <Card.Title as="h1">{word.english}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {word.transcription}
+        </Card.Subtitle>
+        <>
           {flipped ? (
-            <Card.Title>{word.russian}</Card.Title>
+            <Card.Text as="h3">{word.russian}</Card.Text>
           ) : (
             <Button variant="primary" onClick={flip} ref={flipButtonRef}>
               Проверить
             </Button>
           )}
-        </div>
+        </>
       </Card.Body>
     </Card>
   );
