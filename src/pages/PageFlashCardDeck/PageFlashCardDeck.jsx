@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -29,7 +28,7 @@ function FlashCardDesk(props) {
 
   return (
     <Container className="mt-5 text-center">
-      <Row className="mb-3 justify-content-center">
+      <Row className="justify-content-center">
         <Col lg={4}>
           <FlashCard
             onFlip={handleFlip}
@@ -38,30 +37,30 @@ function FlashCardDesk(props) {
           />
         </Col>
       </Row>
-      <Row className="mb-3 justify-content-center">
-        <Col lg={2}>
+      <Row className="justify-content-center">
+        <Col lg={2} className="pt-3">
           <Button
             className="w-100 h-100"
             size="sm"
             variant="outline-success"
             onClick={handlePrev}
           >
-            prev
+            PREV
           </Button>
         </Col>
-        <Col lg={2}>
+        <Col lg={2} className="pt-3">
           <Button
             className="w-100 h-100"
             size="sm"
             variant="outline-success"
             onClick={handleNext}
           >
-            next
+            NEXT
           </Button>
         </Col>
       </Row>
-      <Row className="mb-3">
-        <Col>Выучено слов: {flipCount}</Col>
+      <Row className="pt-3">
+        <Col>Words checked: {flipCount}</Col>
       </Row>
     </Container>
   );

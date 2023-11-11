@@ -26,7 +26,7 @@ function FlashCard(props) {
             <Card.Text as="h3">{word.russian}</Card.Text>
           ) : (
             <Button variant="success" onClick={flip} ref={flipButtonRef}>
-              Проверить
+              CHECK
             </Button>
           )}
         </>
