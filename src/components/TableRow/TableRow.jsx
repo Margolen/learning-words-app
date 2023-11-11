@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './style.module.scss';
 
 function TableRow(props) {
   const { english, transcription, russian } = props.word;
@@ -87,21 +85,21 @@ function TableRow(props) {
             <input
               value={inputValueEnglish}
               onChange={handleInputChangeEnglish}
-              styleName={!isCorrectEnglish && 'incorrect'}
+              // styleName={!isCorrectEnglish && 'incorrect'}
             ></input>
           </td>
           <td>
             <input
               value={inputValueTranscription}
               onChange={handleInputChangeTranscription}
-              styleName={!isCorrectTranscription && 'incorrect'}
+              // styleName={!isCorrectTranscription && 'incorrect'}
             ></input>
           </td>
           <td>
             <input
               value={inputValueRussian}
               onChange={handleInputChangeRussian}
-              styleName={!isCorrectRussian && 'incorrect'}
+              // styleName={!isCorrectRussian && 'incorrect'}
             ></input>
           </td>
         </>
@@ -118,16 +116,16 @@ function TableRow(props) {
           <>
             <img
               onClick={() => setEditMode(false)}
-              styleName="img-row"
+              // styleName="img-row"
               src="./img/cancel.png"
               alt=""
             />
             <img
-              styleName={
-                isCorrectEnglish && isCorrectRussian && isCorrectTranscription
-                  ? 'img-row'
-                  : 'img-row disabled'
-              }
+              // styleName={
+              //   isCorrectEnglish && isCorrectRussian && isCorrectTranscription
+              //     ? 'img-row'
+              //     : 'img-row disabled'
+              // }
               src="./img/save.png"
               alt=""
               onClick={handleSave}
@@ -137,11 +135,11 @@ function TableRow(props) {
           <>
             <img
               onClick={() => setEditMode(true)}
-              styleName="img-row"
+              // styleName="img-row"
               src="./img/edit.png"
               alt=""
             />
-            <img styleName="img-row" src="./img/delete.png" alt="" />
+            <img /* styleName="img-row" */ src="./img/delete.png" alt="" />
           </>
         )}
       </td>
@@ -149,6 +147,4 @@ function TableRow(props) {
   );
 }
 
-export default CSSModules(TableRow, styles, {
-  allowMultiple: true,
-});
+export default TableRow;

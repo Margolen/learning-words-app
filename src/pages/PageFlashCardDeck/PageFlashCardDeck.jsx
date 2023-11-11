@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './style.module.scss';
+
 import FlashCard from '../../components/FlashCard/FlashCard';
 
 function FlashCardDesk(props) {
@@ -25,18 +24,14 @@ function FlashCardDesk(props) {
 
   return (
     <>
-      <div styleName="desk">
-        <button styleName="switch" onClick={handlePrev}>
-          prev
-        </button>
+      <div>
+        <button onClick={handlePrev}>prev</button>
         <FlashCard onFlip={handleFlip} word={props.words[count]} key={count} />
-        <button styleName="switch" onClick={handleNext}>
-          next
-        </button>
+        <button onClick={handleNext}>next</button>
       </div>
-      <div styleName="counter">Выучено слов: {flipCount}</div>
+      <div>Выучено слов: {flipCount}</div>
     </>
   );
 }
 
-export default CSSModules(FlashCardDesk, styles);
+export default FlashCardDesk;

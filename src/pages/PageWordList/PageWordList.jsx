@@ -1,13 +1,11 @@
-import CSSModules from 'react-css-modules';
 import TableRow from '../../components/TableRow/TableRow';
 import AddWord from '../../components/AddWord/AddWord';
-import styles from './style.module.scss';
 
 function WordList(props) {
   const words = props.words;
   return (
-    <div styleName="container">
-      <table styleName="table">
+    <div className="container">
+      <table className="table">
         <tr>
           <th>English Word</th>
           <th>Transcrption</th>
@@ -23,4 +21,4 @@ function WordList(props) {
   );
 }
 
-export default CSSModules(WordList, styles);
+export default WordList;
