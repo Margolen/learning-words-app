@@ -114,7 +114,7 @@ function TableRow(props) {
       <td>
         {editMode ? (
           <>
-            <img
+            {/* <img
               onClick={() => setEditMode(false)}
               // styleName="img-row"
               src="./img/cancel.png"
@@ -129,17 +129,17 @@ function TableRow(props) {
               src="./img/save.png"
               alt=""
               onClick={handleSave}
-            />
+            /> */}
           </>
         ) : (
           <>
-            <img
+            {/* <img
               onClick={() => setEditMode(true)}
               // styleName="img-row"
               src="./img/edit.png"
               alt=""
             />
-            <img /* styleName="img-row" */ src="./img/delete.png" alt="" />
+            <img styleName="img-row" src="./img/delete.png" alt="" /> */}
           </>
         )}
       </td>

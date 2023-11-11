@@ -1,18 +1,33 @@
+import Form from 'react-bootstrap/Form';
+
 function AddWord() {
   return (
-    <tr>
-      <td>
-        <input type="text" />
-      </td>
-      <td>
-        <input type="text" />
-      </td>
-      <td>
-        <input type="text" />
-      </td>
-
-      <img src="./img/add.png" alt="" />
-    </tr>
+    <>
+      <tr>
+        <td>
+          <Form.Control
+            placeholder="Type an english word"
+            aria-label="English Word"
+            aria-describedby="basic-addon2"
+          />
+        </td>
+        <td>
+          <Form.Control
+            placeholder="Type a transcrption"
+            aria-label="Transcrption"
+            aria-describedby="basic-addon2"
+          />
+        </td>
+        <td>
+          <Form.Control
+            placeholder="Type a russian word"
+            aria-label="Russian Word"
+            aria-describedby="basic-addon2"
+          />
+        </td>
+        {/* <img src="./img/add.png" alt="" /> */}
+      </tr>
+    </>
   );
 }
 
