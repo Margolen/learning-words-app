@@ -13,7 +13,14 @@ const EDIT_ACTIONS = {
   setTranscription: 'SET_TRANS',
 };
 
-function TableRow({ english, transcription, russian, id, onRemoveWord }) {
+function TableRow({
+  english,
+  transcription,
+  russian,
+  id,
+  onRemoveWord,
+  isFieldValid,
+}) {
   const [editMode, setEditMode] = useState(false);
 
   const reducer = (state, action) => {
@@ -55,12 +62,6 @@ function TableRow({ english, transcription, russian, id, onRemoveWord }) {
       payload: event.target.value,
     });
 
-  const isFieldValid = field => {
-    const pattern = /\d+/g; // регулярное выражение для поиска цифр в строке
-    const hasDigits = pattern.test(field); // проверяем наличие цифр в строке
-    return field.trim() !== '' && !hasDigits;
-  };
-
   const handleSave = () => {
     if (!isFieldValid(word.english)) {
       alert('Invalid English value');
@@ -98,7 +99,7 @@ function TableRow({ english, transcription, russian, id, onRemoveWord }) {
               type="text"
               name="transciption"
               value={word.transcription}
-              isInvalid={!isFieldValid(word.transcription)}
+              C
               onChange={handleInputChangeTranscription}
             />
           </td>
