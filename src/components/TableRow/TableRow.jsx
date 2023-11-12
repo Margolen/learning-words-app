@@ -118,38 +118,15 @@ function TableRow(props) {
       )}
 
       <td>
-        <PencilSquare size={24} />
-        <Trash3 size={24} />
-        <CheckSquare size={24} />
-        <XSquare size={24} />
         {editMode ? (
           <>
-            {/* <img
-              onClick={() => setEditMode(false)}
-              // styleName="img-row"
-              src="./img/cancel.png"
-              alt=""
-            />
-            <img
-              // styleName={
-              //   isCorrectEnglish && isCorrectRussian && isCorrectTranscription
-              //     ? 'img-row'
-              //     : 'img-row disabled'
-              // }
-              src="./img/save.png"
-              alt=""
-              onClick={handleSave}
-            /> */}
+            <XSquare size={24} onClick={() => setEditMode(false)} />
+            <CheckSquare size={24} onClick={handleSave} />
           </>
         ) : (
           <>
-            {/* <img
-              onClick={() => setEditMode(true)}
-              // styleName="img-row"
-              src="./img/edit.png"
-              alt=""
-            />
-            <img styleName="img-row" src="./img/delete.png" alt="" /> */}
+            <PencilSquare size={24} onClick={() => setEditMode(true)} />
+            <Trash3 size={24} />
           </>
         )}
       </td>
