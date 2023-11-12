@@ -14,33 +14,35 @@ function WordList({ words, setWords }) {
   };
 
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>English Word</th>
-          <th>Transcrption</th>
-          <th>Russian Word</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <AddWord
-          isFieldValid={isFieldValid}
-          words={words}
-          setWords={setWords}
-        />
-        {words.map(word => {
-          return (
-            <TableRow
-              {...word}
-              key={word.id}
-              onRemoveWord={handleRemoveWord}
-              isFieldValid={isFieldValid}
-            />
-          );
-        })}
-      </tbody>
-    </Table>
+    <div className="container mt-4">
+      <Table striped bordered hover className="text-center">
+        <thead>
+          <tr>
+            <th>English Word</th>
+            <th>Transcrption</th>
+            <th>Russian Word</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <AddWord
+            isFieldValid={isFieldValid}
+            words={words}
+            setWords={setWords}
+          />
+          {words.map(word => {
+            return (
+              <TableRow
+                {...word}
+                key={word.id}
+                onRemoveWord={handleRemoveWord}
+                isFieldValid={isFieldValid}
+              />
+            );
+          })}
+        </tbody>
+      </Table>
+    </div>
   );
 }
 

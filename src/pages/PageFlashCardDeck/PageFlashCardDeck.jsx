@@ -27,7 +27,7 @@ function FlashCardDesk(props) {
   }
 
   return (
-    <Container className="mt-5 text-center">
+    <Container className="mt-5 text-center container__table">
       <Row className="justify-content-center">
         <Col lg={4}>
           <FlashCard

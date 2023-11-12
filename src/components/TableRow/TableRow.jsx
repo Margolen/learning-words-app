@@ -124,13 +124,29 @@ function TableRow({
       <td>
         {editMode ? (
           <>
-            <XSquare size={24} onClick={() => setEditMode(false)} />
-            <CheckSquare size={24} onClick={handleSave} />
+            <XSquare
+              size={32}
+              onClick={() => setEditMode(false)}
+              className="px-1 cursor-pointer hover-effect"
+            />
+            <CheckSquare
+              size={32}
+              onClick={handleSave}
+              className="px-1 cursor-pointer hover-effect"
+            />
           </>
         ) : (
           <>
-            <PencilSquare size={24} onClick={() => setEditMode(true)} />
-            <Trash3 size={24} onClick={() => onRemoveWord(id)} />
+            <PencilSquare
+              size={32}
+              onClick={() => setEditMode(true)}
+              className="px-1  cursor-pointer hover-effect"
+            />
+            <Trash3
+              size={32}
+              onClick={() => onRemoveWord(id)}
+              className="px-1 cursor-pointer hover-effect"
+            />
           </>
         )}
       </td>

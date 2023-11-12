@@ -91,7 +91,12 @@ function AddWord({ isFieldValid, words, setWords }) {
           />
         </td>
         <td>
-          <PlusSquare size={24} onClick={onSaveWord} />
+          <PlusSquare
+            size={32}
+            onClick={onSaveWord}
+            className="px-1 cursor-pointer
+            hover-effect"
+          />
         </td>
       </tr>
     </>
