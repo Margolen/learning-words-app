@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import TableRow from '../../components/TableRow/TableRow';
 import AddWord from '../../components/AddWord/AddWord';
 import Table from 'react-bootstrap/Table';
 
-function WordList(props) {
-  const [words, setWords] = useState(props.words);
-
+function WordList({ words, setWords }) {
   function handleRemoveWord(id) {
     setWords(words.filter(word => word.id !== id));
   }
