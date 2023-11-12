@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
-import CSSModules from 'react-css-modules';
-import styles from './style.module.scss';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function FlashCard(props) {
   const word = props.word;
@@ -15,22 +15,24 @@ function FlashCard(props) {
   }
 
   return (
-    <div styleName="flash-card">
-      <div styleName="main">
-        <div styleName="english">{word.english}</div>
-        <div styleName="transcription">{word.transcription}</div>
-      </div>
-      <div styleName="action">
-        {flipped ? (
-          <div styleName="russian">{word.russian}</div>
-        ) : (
-          <button styleName="flip-button" onClick={flip} ref={flipButtonRef}>
-            Проверить
-          </button>
-        )}
-      </div>
-    </div>
+    <Card className="text-center" style={{ height: '10rem' }}>
+      <Card.Body>
+        <Card.Title as="h1">{word.english}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">
+          {word.transcription}
+        </Card.Subtitle>
+        <>
+          {flipped ? (
+            <Card.Text as="h3">{word.russian}</Card.Text>
+          ) : (
+            <Button variant="success" onClick={flip} ref={flipButtonRef}>
+              CHECK
+            </Button>
+          )}
+        </>
+      </Card.Body>
+    </Card>
   );
 }
 
-export default CSSModules(FlashCard, styles);
+export default FlashCard;

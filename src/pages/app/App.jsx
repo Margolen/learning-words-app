@@ -1,18 +1,13 @@
-import words from '../../words.json';
+import wordsJson from '../../words.json';
+import { useState } from 'react';
 import { PageHome, PageFlashCardDeck, PageWordList, PageError } from '../index';
 import Header from '../../components/Header/Header';
-import Home from '../PageHome/PageHome';
-import WordList from '../PageWordList/PageWordList';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from 'react-router-dom';
 
-import styles from './style.module.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function App() {
+  const [words, setWords] = useState(wordsJson);
+
   return (
     <Router>
       <div className="App">
@@ -28,7 +23,7 @@ export default function App() {
             ></Route>
             <Route
               path="/wordlist"
-              element={<PageWordList words={words} />}
+              element={<PageWordList words={words} setWords={setWords} />}
             ></Route>
             <Route path="*" element={<PageError />}></Route>
           </Routes>
