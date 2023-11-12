@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import {
   PencilSquare,
   Trash3,
@@ -7,25 +7,53 @@ import {
 } from 'react-bootstrap-icons';
 import Form from 'react-bootstrap/Form';
 
+const EDIT_ACTIONS = {
+  setEnglish: 'SET_ENG',
+  setRussian: 'SET_RUS',
+  setTranscription: 'SET_TRANS',
+};
+
 function TableRow({ english, transcription, russian, id, onRemoveWord }) {
   const [editMode, setEditMode] = useState(false);
 
-  const [inputValueEnglish, setInputValueEnglish] = useState(english);
-  const [inputValueRussian, setInputValueRussian] = useState(russian);
-  const [inputValueTranscription, setInputValueTranscription] =
-    useState(transcription);
-
-  const handleInputChangeEnglish = event => {
-    setInputValueEnglish(event.target.value);
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case EDIT_ACTIONS.setEnglish:
+        return { ...state, english: action.payload };
+      case EDIT_ACTIONS.setTranscription:
+        return { ...state, transcription: action.payload };
+      case EDIT_ACTIONS.setRussian:
+        return { ...state, russian: action.payload };
+      default:
+        return state;
+    }
   };
 
-  const handleInputChangeRussian = event => {
-    setInputValueRussian(event.target.value);
+  const initialWord = {
+    english: english,
+    russian: russian,
+    transcription: transcription,
   };
 
-  const handleInputChangeTranscription = event => {
-    setInputValueTranscription(event.target.value);
-  };
+  const [word, dispatch] = useReducer(reducer, initialWord);
+
+  const handleInputChangeEnglish = event =>
+    dispatch({
+      type: EDIT_ACTIONS.setEnglish,
+      payload: event.target.value,
+    });
+
+  const handleInputChangeRussian = event =>
+    dispatch({
+      type: EDIT_ACTIONS.setRussian,
+      payload: event.target.value,
+    });
+
+  const handleInputChangeTranscription = event =>
+    dispatch({
+      type: EDIT_ACTIONS.setTranscription,
+      payload: event.target.value,
+    });
 
   const isFieldValid = field => {
     const pattern = /\d+/g; // регулярное выражение для поиска цифр в строке
@@ -34,17 +62,17 @@ function TableRow({ english, transcription, russian, id, onRemoveWord }) {
   };
 
   const handleSave = () => {
-    if (!isFieldValid(inputValueEnglish)) {
+    if (!isFieldValid(word.english)) {
       alert('Invalid English value');
       return;
     }
 
-    if (!isFieldValid(inputValueRussian)) {
+    if (!isFieldValid(word.russian)) {
       alert('Invalid Russian value');
       return;
     }
 
-    if (!isFieldValid(inputValueTranscription)) {
+    if (!isFieldValid(word.transcription)) {
       alert('Invalid transcription value');
       return;
     }
@@ -60,35 +88,35 @@ function TableRow({ english, transcription, russian, id, onRemoveWord }) {
             <Form.Control
               type="text"
               name="english"
-              value={inputValueEnglish}
+              value={word.english}
+              isInvalid={!isFieldValid(word.english)}
               onChange={handleInputChangeEnglish}
-              isInvalid={!isFieldValid(inputValueEnglish)}
             />
           </td>
           <td>
             <Form.Control
               type="text"
               name="transciption"
-              value={inputValueTranscription}
+              value={word.transcription}
+              isInvalid={!isFieldValid(word.transcription)}
               onChange={handleInputChangeTranscription}
-              isInvalid={!isFieldValid(inputValueTranscription)}
             />
           </td>
           <td>
             <Form.Control
               type="text"
               name="russian"
-              value={inputValueRussian}
+              value={word.russian}
+              isInvalid={!isFieldValid(word.russian)}
               onChange={handleInputChangeRussian}
-              isInvalid={!isFieldValid(inputValueRussian)}
             />
           </td>
         </>
       ) : (
         <>
-          <td>{inputValueEnglish}</td>
-          <td>{inputValueTranscription}</td>
-          <td>{inputValueRussian}</td>
+          <td>{word.english}</td>
+          <td>{word.transcription}</td>
+          <td>{word.russian}</td>
         </>
       )}
 
