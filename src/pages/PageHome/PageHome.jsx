@@ -5,8 +5,14 @@ import { Button, Container, Image } from 'react-bootstrap';
 function Home() {
   const navigate = useNavigate();
   return (
-    <Container className="home text-center mt-4">
-      <Image src="img/flag.jpg" alt="UK flag" fluid rounded />
+    <Container className="home text-center d-flex flex-column align-items-center justify-content-center mt-4">
+      <Image
+        src="img/flag.svg"
+        alt="UK flag"
+        fluid
+        rounded
+        style={{ width: '850px', height: 'auto' }}
+      />
       <Button
         variant="success"
         onClick={() => navigate('game')}
