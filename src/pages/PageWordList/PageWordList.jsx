@@ -21,11 +21,7 @@ function WordList({ words, setWords }) {
         <AddWord />
         {words.map(word => {
           return (
-            <TableRow
-              word={word}
-              key={word.id}
-              onRemoveWord={handleRemoveWord}
-            />
+            <TableRow {...word} key={word.id} onRemoveWord={handleRemoveWord} />
           );
         })}
       </tbody>

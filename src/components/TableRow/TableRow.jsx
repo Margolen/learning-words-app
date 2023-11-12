@@ -7,8 +7,7 @@ import {
 } from 'react-bootstrap-icons';
 import Form from 'react-bootstrap/Form';
 
-function TableRow(props) {
-  const { english, transcription, russian, id } = props.word;
+function TableRow({ english, transcription, russian, id, onRemoveWord }) {
   const [editMode, setEditMode] = useState(false);
 
   const [inputValueEnglish, setInputValueEnglish] = useState(english);
@@ -16,29 +15,16 @@ function TableRow(props) {
   const [inputValueTranscription, setInputValueTranscription] =
     useState(transcription);
 
-  const [isCorrectEnglish, setIsCorrectEnglish] = useState(
-    english.trim() !== ''
-  );
-  const [isCorrectRussian, setIsCorrectRussian] = useState(
-    russian.trim() !== ''
-  );
-  const [isCorrectTranscription, setIsCorrectTranscription] = useState(
-    transcription.trim() !== ''
-  );
-
   const handleInputChangeEnglish = event => {
     setInputValueEnglish(event.target.value);
-    setIsCorrectEnglish(isFieldValid(event.target.value));
   };
 
   const handleInputChangeRussian = event => {
     setInputValueRussian(event.target.value);
-    setIsCorrectRussian(isFieldValid(event.target.value));
   };
 
   const handleInputChangeTranscription = event => {
     setInputValueTranscription(event.target.value);
-    setIsCorrectTranscription(isFieldValid(event.target.value));
   };
 
   const isFieldValid = field => {
@@ -76,7 +62,7 @@ function TableRow(props) {
               name="english"
               value={inputValueEnglish}
               onChange={handleInputChangeEnglish}
-              isInvalid={!isCorrectEnglish}
+              isInvalid={!isFieldValid(inputValueEnglish)}
             />
           </td>
           <td>
@@ -85,7 +71,7 @@ function TableRow(props) {
               name="transciption"
               value={inputValueTranscription}
               onChange={handleInputChangeTranscription}
-              isInvalid={!isCorrectTranscription}
+              isInvalid={!isFieldValid(inputValueTranscription)}
             />
           </td>
           <td>
@@ -94,7 +80,7 @@ function TableRow(props) {
               name="russian"
               value={inputValueRussian}
               onChange={handleInputChangeRussian}
-              isInvalid={!isCorrectRussian}
+              isInvalid={!isFieldValid(inputValueRussian)}
             />
           </td>
         </>
@@ -115,7 +101,7 @@ function TableRow(props) {
         ) : (
           <>
             <PencilSquare size={24} onClick={() => setEditMode(true)} />
-            <Trash3 size={24} onClick={() => props.onRemoveWord(id)} />
+            <Trash3 size={24} onClick={() => onRemoveWord(id)} />
           </>
         )}
       </td>
