@@ -11,6 +11,7 @@ const EDIT_ACTIONS = {
   setEnglish: 'SET_ENG',
   setRussian: 'SET_RUS',
   setTranscription: 'SET_TRANS',
+  setWord: 'SET_WORD',
 };
 
 function TableRow({
@@ -31,6 +32,8 @@ function TableRow({
         return { ...state, transcription: action.payload };
       case EDIT_ACTIONS.setRussian:
         return { ...state, russian: action.payload };
+      case EDIT_ACTIONS.setWord:
+        return { ...action.payload };
       default:
         return state;
     }
@@ -42,7 +45,8 @@ function TableRow({
     transcription: transcription,
   };
 
-  const [word, dispatch] = useReducer(reducer, initialWord);
+  const [word, setWord] = useState(initialWord);
+  const [editedWord, dispatch] = useReducer(reducer, word);
 
   const handleInputChangeEnglish = event =>
     dispatch({
@@ -63,21 +67,30 @@ function TableRow({
     });
 
   const handleSave = () => {
-    if (!isFieldValid(word.english)) {
+    if (!isFieldValid(editedWord.english)) {
       alert('Invalid English value');
       return;
     }
 
-    if (!isFieldValid(word.russian)) {
+    if (!isFieldValid(editedWord.russian)) {
       alert('Invalid Russian value');
       return;
     }
 
-    if (!isFieldValid(word.transcription)) {
+    if (!isFieldValid(editedWord.transcription)) {
       alert('Invalid transcription value');
       return;
     }
 
+    setWord(editedWord);
+    setEditMode(false);
+  };
+
+  const handleCancel = () => {
+    dispatch({
+      type: EDIT_ACTIONS.setWord,
+      payload: word,
+    });
     setEditMode(false);
   };
 
@@ -89,8 +102,8 @@ function TableRow({
             <Form.Control
               type="text"
               name="english"
-              value={word.english}
-              isInvalid={!isFieldValid(word.english)}
+              value={editedWord.english}
+              isInvalid={!isFieldValid(editedWord.english)}
               onChange={handleInputChangeEnglish}
             />
           </td>
@@ -98,8 +111,8 @@ function TableRow({
             <Form.Control
               type="text"
               name="transciption"
-              value={word.transcription}
-              C
+              value={editedWord.transcription}
+              isInvalid={!isFieldValid(editedWord.transcription)}
               onChange={handleInputChangeTranscription}
             />
           </td>
@@ -107,8 +120,8 @@ function TableRow({
             <Form.Control
               type="text"
               name="russian"
-              value={word.russian}
-              isInvalid={!isFieldValid(word.russian)}
+              value={editedWord.russian}
+              isInvalid={!isFieldValid(editedWord.russian)}
               onChange={handleInputChangeRussian}
             />
           </td>
@@ -126,7 +139,7 @@ function TableRow({
           <>
             <XSquare
               size={32}
-              onClick={() => setEditMode(false)}
+              onClick={handleCancel}
               className="px-1 cursor-pointer hover-effect"
             />
             <CheckSquare
