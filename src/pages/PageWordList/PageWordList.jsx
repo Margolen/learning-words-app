@@ -7,7 +7,6 @@ function WordList(props) {
   const [words, setWords] = useState(props.words);
 
   function handleRemoveWord(id) {
-    console.log(id);
     setWords(words.filter(word => word.id !== id));
   }
 
