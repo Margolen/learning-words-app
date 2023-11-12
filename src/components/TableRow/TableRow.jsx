@@ -5,6 +5,7 @@ import {
   CheckSquare,
   XSquare,
 } from 'react-bootstrap-icons';
+import Form from 'react-bootstrap/Form';
 
 function TableRow(props) {
   const { english, transcription, russian, id } = props.word;
@@ -27,55 +28,37 @@ function TableRow(props) {
 
   const handleInputChangeEnglish = event => {
     setInputValueEnglish(event.target.value);
-    if (event.target.value.trim() === '') {
-      setIsCorrectEnglish(false);
-    } else {
-      setIsCorrectEnglish(true);
-    }
+    setIsCorrectEnglish(isFieldValid(event.target.value));
   };
 
   const handleInputChangeRussian = event => {
     setInputValueRussian(event.target.value);
-    if (event.target.value.trim() === '') {
-      setIsCorrectRussian(false);
-    } else {
-      setIsCorrectRussian(true);
-    }
+    setIsCorrectRussian(isFieldValid(event.target.value));
   };
 
   const handleInputChangeTranscription = event => {
     setInputValueTranscription(event.target.value);
-    if (event.target.value.trim() === '') {
-      setIsCorrectTranscription(false);
-    } else {
-      setIsCorrectTranscription(true);
-    }
+    setIsCorrectTranscription(isFieldValid(event.target.value));
   };
 
   const isFieldValid = field => {
     const pattern = /\d+/g; // регулярное выражение для поиска цифр в строке
     const hasDigits = pattern.test(field); // проверяем наличие цифр в строке
-    return !hasDigits;
+    return field.trim() !== '' && !hasDigits;
   };
 
   const handleSave = () => {
-    if (isFieldValid(inputValueEnglish)) {
-      console.log('English field is correct');
-    } else {
+    if (!isFieldValid(inputValueEnglish)) {
       alert('Invalid English value');
       return;
     }
 
-    if (isFieldValid(inputValueRussian)) {
-      console.log('Russian field is correct');
-    } else {
+    if (!isFieldValid(inputValueRussian)) {
       alert('Invalid Russian value');
       return;
     }
 
-    if (isFieldValid(inputValueTranscription)) {
-      console.log('Transcription field is correct');
-    } else {
+    if (!isFieldValid(inputValueTranscription)) {
       alert('Invalid transcription value');
       return;
     }
@@ -88,25 +71,31 @@ function TableRow(props) {
       {editMode ? (
         <>
           <td>
-            <input
+            <Form.Control
+              type="text"
+              name="english"
               value={inputValueEnglish}
               onChange={handleInputChangeEnglish}
-              // styleName={!isCorrectEnglish && 'incorrect'}
-            ></input>
+              isInvalid={!isCorrectEnglish}
+            />
           </td>
           <td>
-            <input
+            <Form.Control
+              type="text"
+              name="transciption"
               value={inputValueTranscription}
               onChange={handleInputChangeTranscription}
-              // styleName={!isCorrectTranscription && 'incorrect'}
-            ></input>
+              isInvalid={!isCorrectTranscription}
+            />
           </td>
           <td>
-            <input
+            <Form.Control
+              type="text"
+              name="russian"
               value={inputValueRussian}
               onChange={handleInputChangeRussian}
-              // styleName={!isCorrectRussian && 'incorrect'}
-            ></input>
+              isInvalid={!isCorrectRussian}
+            />
           </td>
         </>
       ) : (
