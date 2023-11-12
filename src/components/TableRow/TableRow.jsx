@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import {
+  PencilSquare,
+  Trash3,
+  CheckSquare,
+  XSquare,
+} from 'react-bootstrap-icons';
 
 function TableRow(props) {
   const { english, transcription, russian } = props.word;
@@ -112,6 +118,10 @@ function TableRow(props) {
       )}
 
       <td>
+        <PencilSquare size={24} />
+        <Trash3 size={24} />
+        <CheckSquare size={24} />
+        <XSquare size={24} />
         {editMode ? (
           <>
             {/* <img
