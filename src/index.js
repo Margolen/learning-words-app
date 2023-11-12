@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import 'normalize.css';
 import '../src/style/index.scss';
 import App from './pages/app/App';
+import { ThemeContextProvider } from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <ThemeContextProvider>
     <App />
-  </React.StrictMode>
+  </ThemeContextProvider>
 );

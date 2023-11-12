@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
 import FlashCard from '../../components/FlashCard/FlashCard';
+import { ThemeContext } from '../../context/ThemeContext';
 
-function FlashCardDesk(props) {
+function FlashCardDeck(props) {
+  const { darkMode } = useContext(ThemeContext);
+
   const [count, setCount] = useState(0);
   const [flipCount, setFlipCount] = useState(0);
 
@@ -27,7 +30,11 @@ function FlashCardDesk(props) {
   }
 
   return (
-    <Container className="mt-5 text-center container__table">
+    <Container
+      className="mt-5 text-center container__table"
+      bg={darkMode ? 'dark' : 'light'}
+      data-bs-theme={darkMode ? 'dark' : 'light'}
+    >
       <Row className="justify-content-center">
         <Col lg={4}>
           <FlashCard
@@ -42,7 +49,7 @@ function FlashCardDesk(props) {
           <Button
             className="w-100 h-100"
             size="sm"
-            variant="outline-success"
+            variant="success"
             onClick={handlePrev}
           >
             PREV
@@ -52,18 +59,18 @@ function FlashCardDesk(props) {
           <Button
             className="w-100 h-100"
             size="sm"
-            variant="outline-success"
+            variant="success"
             onClick={handleNext}
           >
             NEXT
           </Button>
         </Col>
       </Row>
-      <Row className="pt-3">
+      <Row className="pt-3" style={{ color: darkMode ? 'white' : 'black' }}>
         <Col>Words checked: {flipCount}</Col>
       </Row>
     </Container>
   );
 }
 
-export default FlashCardDesk;
+export default FlashCardDeck;

@@ -1,8 +1,14 @@
-import TableRow from '../../components/TableRow/TableRow';
-import AddWord from '../../components/AddWord/AddWord';
+import { useContext } from 'react';
 import Table from 'react-bootstrap/Table';
 
+import TableRow from '../../components/TableRow/TableRow';
+import AddWord from '../../components/AddWord/AddWord';
+
+import { ThemeContext } from '../../context/ThemeContext';
+
 function WordList({ words, setWords }) {
+  const { darkMode } = useContext(ThemeContext);
+
   const handleRemoveWord = id => {
     setWords(words.filter(word => word.id !== id));
   };
@@ -14,7 +20,11 @@ function WordList({ words, setWords }) {
   };
 
   return (
-    <div className="container mt-4">
+    <div
+      className="container mt-4"
+      bg={darkMode ? 'dark' : 'light'}
+      data-bs-theme={darkMode ? 'dark' : 'light'}
+    >
       <Table striped bordered hover className="text-center">
         <thead>
           <tr>
