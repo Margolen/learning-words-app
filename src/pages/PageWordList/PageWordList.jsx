@@ -1,9 +1,16 @@
+import { useState } from 'react';
 import TableRow from '../../components/TableRow/TableRow';
 import AddWord from '../../components/AddWord/AddWord';
 import Table from 'react-bootstrap/Table';
 
 function WordList(props) {
-  const words = props.words;
+  const [words, setWords] = useState(props.words);
+
+  function handleRemoveWord(id) {
+    console.log(id);
+    setWords(words.filter(word => word.id !== id));
+  }
+
   return (
     <Table striped bordered hover>
       <thead>
@@ -17,7 +24,13 @@ function WordList(props) {
       <tbody>
         <AddWord />
         {words.map(word => {
-          return <TableRow word={word} key={word.id} />;
+          return (
+            <TableRow
+              word={word}
+              key={word.id}
+              onRemoveWord={handleRemoveWord}
+            />
+          );
         })}
       </tbody>
     </Table>

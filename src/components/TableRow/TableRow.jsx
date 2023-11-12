@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap-icons';
 
 function TableRow(props) {
-  const { english, transcription, russian } = props.word;
+  const { english, transcription, russian, id } = props.word;
   const [editMode, setEditMode] = useState(false);
 
   const [inputValueEnglish, setInputValueEnglish] = useState(english);
@@ -126,7 +126,7 @@ function TableRow(props) {
         ) : (
           <>
             <PencilSquare size={24} onClick={() => setEditMode(true)} />
-            <Trash3 size={24} />
+            <Trash3 size={24} onClick={() => props.onRemoveWord(id)} />
           </>
         )}
       </td>
