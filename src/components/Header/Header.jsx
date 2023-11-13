@@ -20,10 +20,8 @@ function Header() {
       className="fs-5"
     >
       <Container fluid>
-        <Navbar.Brand href="#home">
-          <NavLink className="nav-link" to="/">
-            <GlobeCentralSouthAsia size={32} className="px-1" />
-          </NavLink>
+        <Navbar.Brand href="/">
+          <GlobeCentralSouthAsia size={32} className="px-1" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
