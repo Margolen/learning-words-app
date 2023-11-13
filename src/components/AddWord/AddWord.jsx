@@ -10,7 +10,7 @@ const EDIT_ACTIONS = {
   clean: 'CLEAN',
 };
 
-function AddWord({ isFieldValid, words, setWords }) {
+function AddWord({ isFieldValid, addNewWord }) {
   const initialWord = {
     english: '',
     russian: '',
@@ -35,7 +35,8 @@ function AddWord({ isFieldValid, words, setWords }) {
   const [word, dispatch] = useReducer(reducer, initialWord);
 
   const onSaveWord = () => {
-    setWords([{ ...word, id: uuid() }, ...words]);
+    // setWords([{ ...word, id: uuid() }, ...words]);
+    addNewWord({ ...word, id: uuid() });
     dispatch({ type: EDIT_ACTIONS.clean });
   };
 

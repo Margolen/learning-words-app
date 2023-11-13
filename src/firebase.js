@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,6 +13,9 @@ const firebaseConfig = {
   storageBucket: 'flashcards-fc64a.appspot.com',
   messagingSenderId: '388605595144',
   appId: '1:388605595144:web:c209885898f85d9e464bbd',
+  // The value of `databaseURL` depends on the location of the database
+  databaseURL:
+    'https://flashcards-fc64a-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
 // Initialize Firebase
@@ -19,3 +23,4 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const database = getDatabase();

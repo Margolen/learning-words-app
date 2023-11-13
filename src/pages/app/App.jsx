@@ -1,15 +1,54 @@
-import wordsJson from '../../words.json';
-
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { PageHome, PageFlashCardDeck, PageWordList, PageError } from '../index';
 import Header from '../../components/Header/Header';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeContext } from '../../context/ThemeContext';
 
+import { database } from '../../firebase';
+import { ref, onValue, child, push, update } from 'firebase/database';
+
 export default function App() {
-  const [words, setWords] = useState(wordsJson);
+  const [words, setWords] = useState([]);
   const { darkMode } = useContext(ThemeContext);
+
+  useEffect(() => {
+    const wordsRef = ref(database, 'user/words/');
+    onValue(wordsRef, words => {
+      const data = words.val();
+      const requestedWords = Object.entries(data).map(([wordId, word]) => {
+        return { ...word, wordId };
+      });
+
+      setWords(requestedWords);
+    });
+  }, []);
+
+  const addNewWord = word => {
+    const databaseRef = ref(database);
+    const newWordId = push(child(databaseRef, 'user/words/')).key;
+
+    const updates = {};
+    updates['/user/words/' + newWordId] = word;
+
+    return update(databaseRef, updates);
+  };
+
+  const removeWord = wordId => {
+    const databaseRef = ref(database);
+    const updates = {};
+    updates['/user/words/' + wordId] = null;
+
+    return update(databaseRef, updates);
+  };
+
+  const updateWord = word => {
+    const databaseRef = ref(database);
+    const updates = {};
+    updates['/user/words/' + word.wordId] = word;
+
+    return update(databaseRef, updates);
+  };
 
   return (
     <Router>
@@ -29,7 +68,14 @@ export default function App() {
             ></Route>
             <Route
               path="/wordlist"
-              element={<PageWordList words={words} setWords={setWords} />}
+              element={
+                <PageWordList
+                  words={words}
+                  addNewWord={addNewWord}
+                  removeWord={removeWord}
+                  updateWord={updateWord}
+                />
+              }
             ></Route>
             <Route path="*" element={<PageError />}></Route>
           </Routes>
