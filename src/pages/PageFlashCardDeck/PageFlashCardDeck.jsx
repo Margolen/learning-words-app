@@ -7,11 +7,13 @@ import Container from 'react-bootstrap/Container';
 import FlashCard from '../../components/FlashCard/FlashCard';
 import { ThemeContext } from '../../context/ThemeContext';
 
-function FlashCardDeck(props) {
+function FlashCardDeck({ words }) {
   const { darkMode } = useContext(ThemeContext);
 
   const [count, setCount] = useState(0);
   const [flipCount, setFlipCount] = useState(0);
+
+  const [checkedWordIds, setCheckedWordIds] = useState([]);
 
   function handlePrev() {
     if (count !== 0) {
@@ -20,14 +22,20 @@ function FlashCardDeck(props) {
   }
 
   function handleNext() {
-    if (count < props.words.length - 1) {
+    if (count < words.length - 1) {
       setCount(count + 1);
     }
   }
 
-  function handleFlip() {
-    setFlipCount(flipCount + 1);
+  function handleFlip(wordId) {
+    const foundWordId = checkedWordIds.find(id => id === wordId);
+    if (!foundWordId) {
+      setFlipCount(flipCount + 1);
+      setCheckedWordIds([...checkedWordIds, wordId]);
+    }
   }
+
+  const word = words[count];
 
   return (
     <Container
@@ -38,8 +46,8 @@ function FlashCardDeck(props) {
       <Row className="justify-content-center">
         <Col lg={4}>
           <FlashCard
-            onFlip={handleFlip}
-            word={props.words[count]}
+            onFlip={() => handleFlip(word.id)}
+            word={word}
             key={count}
           />
         </Col>
