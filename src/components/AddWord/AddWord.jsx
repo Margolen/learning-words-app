@@ -1,7 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import { PlusSquare } from 'react-bootstrap-icons';
 import { useReducer } from 'react';
-import { v4 as uuid } from 'uuid';
 
 const EDIT_ACTIONS = {
   setEnglish: 'SET_ENG',
@@ -35,8 +34,7 @@ function AddWord({ isFieldValid, addNewWord }) {
   const [word, dispatch] = useReducer(reducer, initialWord);
 
   const onSaveWord = () => {
-    // setWords([{ ...word, id: uuid() }, ...words]);
-    addNewWord({ ...word, id: uuid() });
+    addNewWord({ ...word });
     dispatch({ type: EDIT_ACTIONS.clean });
   };
 

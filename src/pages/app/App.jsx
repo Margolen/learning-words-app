@@ -9,35 +9,48 @@ import { database } from '../../firebase';
 import { ref, onValue, child, push, update } from 'firebase/database';
 
 export default function App() {
+  const [user, setUser] = useState(null);
   const [words, setWords] = useState([]);
   const { darkMode } = useContext(ThemeContext);
 
-  useEffect(() => {
-    const wordsRef = ref(database, 'user/words/');
+  const fillWords = signedUser => {
+    const wordsRef = ref(database, `user/${signedUser.uid}/words/`);
     onValue(wordsRef, words => {
       const data = words.val();
-      const requestedWords = Object.entries(data).map(([wordId, word]) => {
-        return { ...word, wordId };
-      });
+      if (data) {
+        const requestedWords = Object.entries(data).map(([wordId, word]) => {
+          return { ...word, wordId };
+        });
 
-      setWords(requestedWords);
+        setWords(requestedWords);
+      } else {
+        setWords([]);
+      }
     });
-  }, []);
+  };
 
   const addNewWord = word => {
+    if (!user) {
+      return;
+    }
+
     const databaseRef = ref(database);
-    const newWordId = push(child(databaseRef, 'user/words/')).key;
+    const newWordId = push(child(databaseRef, `user/${user.uid}/words/`)).key;
 
     const updates = {};
-    updates['/user/words/' + newWordId] = word;
+    updates[`user/${user.uid}/words/` + newWordId] = word;
 
     return update(databaseRef, updates);
   };
 
   const removeWord = wordId => {
+    if (!user) {
+      return;
+    }
+
     const databaseRef = ref(database);
     const updates = {};
-    updates['/user/words/' + wordId] = null;
+    updates[`user/${user.uid}/words/` + wordId] = null;
 
     return update(databaseRef, updates);
   };
@@ -45,7 +58,7 @@ export default function App() {
   const updateWord = word => {
     const databaseRef = ref(database);
     const updates = {};
-    updates['/user/words/' + word.wordId] = word;
+    updates[`user/${user.uid}/words/` + word.wordId] = word;
 
     return update(databaseRef, updates);
   };
@@ -57,24 +70,34 @@ export default function App() {
         style={{ backgroundColor: darkMode ? '#444444' : 'white' }}
       >
         <header>
-          <Header />
+          <Header user={user} setUser={setUser} fillWords={fillWords} />
         </header>
         <main style={{ backgroundColor: darkMode ? '#444444' : 'white' }}>
           <Routes>
             <Route path="/" element={<PageHome words={words} />}></Route>
             <Route
               path="/game"
-              element={<PageFlashCardDeck words={words} />}
+              element={
+                user && words ? (
+                  <PageFlashCardDeck words={words} />
+                ) : (
+                  <h1>Sign in please to see your cards</h1>
+                )
+              }
             ></Route>
             <Route
               path="/wordlist"
               element={
-                <PageWordList
-                  words={words}
-                  addNewWord={addNewWord}
-                  removeWord={removeWord}
-                  updateWord={updateWord}
-                />
+                user ? (
+                  <PageWordList
+                    words={words}
+                    addNewWord={addNewWord}
+                    removeWord={removeWord}
+                    updateWord={updateWord}
+                  />
+                ) : (
+                  <h1>Sign in please to see your words</h1>
+                )
               }
             ></Route>
             <Route path="*" element={<PageError />}></Route>

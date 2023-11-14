@@ -12,9 +12,8 @@ import { GlobeCentralSouthAsia } from 'react-bootstrap-icons';
 import { signInWithPopup, signOut, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../../firebase';
 
-function Header() {
+function Header({ user, setUser, fillWords }) {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
-  const [user, setUser] = useState(null);
 
   const provider = new GoogleAuthProvider();
 
@@ -29,6 +28,7 @@ function Header() {
         setUser(user);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
+        fillWords(user);
       })
       .catch(error => {
         // Handle Errors here.
@@ -46,6 +46,7 @@ function Header() {
     signOut(auth)
       .then(() => {
         setUser(null);
+        fillWords([]);
       })
       .catch(error => {
         // An error happened.
