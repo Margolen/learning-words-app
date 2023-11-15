@@ -83,7 +83,7 @@ function TableRow({
       return;
     }
 
-    updateWord(editedWord);
+    updateWord(editedWord, wordId);
     setEditMode(false);
   };
 

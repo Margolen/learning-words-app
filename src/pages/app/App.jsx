@@ -61,10 +61,10 @@ export default function App() {
     return update(databaseRef, updates);
   };
 
-  const updateWord = word => {
+  const updateWord = (word, wordId) => {
     const databaseRef = ref(database);
     const updates = {};
-    updates[`user/${user.uid}/words/` + word.wordId] = word;
+    updates[`user/${user.uid}/words/` + wordId] = word;
 
     return update(databaseRef, updates);
   };
