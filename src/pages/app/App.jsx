@@ -13,8 +13,8 @@ export default function App() {
   const [words, setWords] = useState([]);
   const { darkMode } = useContext(ThemeContext);
 
-  const fillWords = signedUser => {
-    const wordsRef = ref(database, `user/${signedUser.uid}/words/`);
+  const onWordsChange = () => {
+    const wordsRef = ref(database, `user/${user.uid}/words/`);
     onValue(wordsRef, words => {
       const data = words.val();
       if (data) {
@@ -28,6 +28,12 @@ export default function App() {
       }
     });
   };
+
+  useEffect(() => {
+    if (user) {
+      onWordsChange(user);
+    }
+  }, [user]);
 
   const addNewWord = word => {
     if (!user) {
@@ -70,7 +76,7 @@ export default function App() {
         style={{ backgroundColor: darkMode ? '#444444' : 'white' }}
       >
         <header>
-          <Header user={user} setUser={setUser} fillWords={fillWords} />
+          <Header user={user} setUser={setUser} />
         </header>
         <main style={{ backgroundColor: darkMode ? '#444444' : 'white' }}>
           <Routes>

@@ -28,7 +28,6 @@ function Header({ user, setUser, fillWords }) {
         setUser(user);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
-        fillWords(user);
       })
       .catch(error => {
         // Handle Errors here.
