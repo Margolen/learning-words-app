@@ -6,11 +6,12 @@ import AddWord from '../../components/AddWord/AddWord';
 
 import { ThemeContext } from '../../context/ThemeContext';
 
-function WordList({ words, setWords }) {
+function WordList({ words, addNewWord, removeWord, updateWord }) {
   const { darkMode } = useContext(ThemeContext);
 
-  const handleRemoveWord = id => {
-    setWords(words.filter(word => word.id !== id));
+  const handleRemoveWord = wordId => {
+    // setWords(words.filter(word => word.id !== id));
+    removeWord(wordId);
   };
 
   const isFieldValid = field => {
@@ -38,14 +39,15 @@ function WordList({ words, setWords }) {
           <AddWord
             isFieldValid={isFieldValid}
             words={words}
-            setWords={setWords}
+            addNewWord={addNewWord}
           />
           {words.map(word => {
             return (
               <TableRow
                 {...word}
-                key={word.id}
+                key={word.wordId}
                 onRemoveWord={handleRemoveWord}
+                updateWord={updateWord}
                 isFieldValid={isFieldValid}
               />
             );

@@ -37,7 +37,7 @@ function FlashCardDeck({ words }) {
 
   const word = words[count];
 
-  return (
+  return word ? (
     <Container
       className="mt-5 text-center container__table"
       bg={darkMode ? 'dark' : 'light'}
@@ -78,6 +78,8 @@ function FlashCardDeck({ words }) {
         <Col>Words checked: {flipCount}</Col>
       </Row>
     </Container>
+  ) : (
+    <h1>Please add words in your word list</h1>
   );
 }
 

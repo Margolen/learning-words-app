@@ -18,8 +18,9 @@ function TableRow({
   english,
   transcription,
   russian,
-  id,
+  wordId,
   onRemoveWord,
+  updateWord,
   isFieldValid,
 }) {
   const [editMode, setEditMode] = useState(false);
@@ -39,13 +40,13 @@ function TableRow({
     }
   };
 
-  const initialWord = {
-    english: english,
-    russian: russian,
-    transcription: transcription,
+  const word = {
+    english,
+    russian,
+    transcription,
   };
 
-  const [word, setWord] = useState(initialWord);
+  // const [word, setWord] = useState(initialWord);
   const [editedWord, dispatch] = useReducer(reducer, word);
 
   const handleInputChangeEnglish = event =>
@@ -82,7 +83,7 @@ function TableRow({
       return;
     }
 
-    setWord(editedWord);
+    updateWord(editedWord, wordId);
     setEditMode(false);
   };
 
@@ -157,7 +158,7 @@ function TableRow({
             />
             <Trash3
               size={32}
-              onClick={() => onRemoveWord(id)}
+              onClick={() => onRemoveWord(wordId)}
               className="px-1 cursor-pointer hover-effect"
             />
           </>
