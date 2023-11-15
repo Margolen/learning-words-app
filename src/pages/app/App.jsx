@@ -13,23 +13,23 @@ export default function App() {
   const [words, setWords] = useState([]);
   const { darkMode } = useContext(ThemeContext);
 
-  const onWordsChange = () => {
-    const wordsRef = ref(database, `user/${user.uid}/words/`);
-    onValue(wordsRef, words => {
-      const data = words.val();
-      if (data) {
-        const requestedWords = Object.entries(data).map(([wordId, word]) => {
-          return { ...word, wordId };
-        });
-
-        setWords(requestedWords);
-      } else {
-        setWords([]);
-      }
-    });
-  };
-
   useEffect(() => {
+    const onWordsChange = () => {
+      const wordsRef = ref(database, `user/${user.uid}/words/`);
+      onValue(wordsRef, words => {
+        const data = words.val();
+        if (data) {
+          const requestedWords = Object.entries(data).map(([wordId, word]) => {
+            return { ...word, wordId };
+          });
+
+          setWords(requestedWords);
+        } else {
+          setWords([]);
+        }
+      });
+    };
+
     if (user) {
       onWordsChange(user);
     }
