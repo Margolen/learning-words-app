@@ -13,10 +13,11 @@ features a theme-switching feature. Styled using the Bootstrap library.
 - Responsive Design: The app is optimized for various devices, ensuring accessibility and usability across desktop, tablet, and mobile platforms.
 
 ## Setup:
-Install dependencies using `npm install`.
-Configure Firebase authentication settings.
-Start the development server using `npm start`.
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+- Install dependencies using `npm install`.
+- Configure Firebase authentication settings.
+- Start the development server using `npm start`.
+- Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 
 
